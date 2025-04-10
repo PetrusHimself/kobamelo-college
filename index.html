@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kobamelo College - Empowering Minds, Enriching Futures</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,6 +22,11 @@
                     fontFamily: {
                         sans: ['Open Sans', 'Arial', 'sans-serif'],
                     },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                        'zoom-in': 'zoomIn 0.3s ease-out',
+                    }
                 }
             }
         }
@@ -39,6 +45,79 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from { 
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Expanded content styling */
+        .expanded-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .expanded-content.active {
+            max-height: 2000px;
+            transition: max-height 0.8s ease-in;
+        }
+        
+        /* Rotating chevron for expandable items */
+        .expand-chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        .expand-chevron.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Pulse animation for CTA buttons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, #003366, #87CEEB);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50">
@@ -50,15 +129,15 @@
                     <div class="text-2xl font-bold text-primary">KOBA<span class="text-darkblue">MELO</span> COLLEGE</div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-darkblue font-medium hover:text-skyblue">Home</a>
-                    <a href="#about" class="text-gray-700 font-medium hover:text-skyblue">About</a>
-                    <a href="#courses" class="text-gray-700 font-medium hover:text-skyblue">Courses</a>
-                    <a href="#testimonials" class="text-gray-700 font-medium hover:text-skyblue">Testimonials</a>
-                    <a href="#contact" class="text-gray-700 font-medium hover:text-skyblue">Contact</a>
-                    <a href="#apply" class="bg-darkblue text-white px-4 py-2 rounded-md hover:bg-skyblue transition duration-300">Apply Now</a>
+                    <a href="#home" class="text-darkblue font-medium hover:text-skyblue transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-700 font-medium hover:text-skyblue transition-colors duration-300">About</a>
+                    <a href="#courses" class="text-gray-700 font-medium hover:text-skyblue transition-colors duration-300">Courses</a>
+                    <a href="#testimonials" class="text-gray-700 font-medium hover:text-skyblue transition-colors duration-300">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 font-medium hover:text-skyblue transition-colors duration-300">Contact</a>
+                    <a href="https://forms.gle/example" target="_blank" class="bg-darkblue text-white px-4 py-2 rounded-md hover:bg-skyblue transition duration-300 pulse-animation">Apply Now</a>
                 </div>
                 <div class="md:hidden">
-                    <button class="mobile-menu-button">
+                    <button class="mobile-menu-button focus:outline-none">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -68,31 +147,31 @@
         </div>
         <!-- Mobile menu -->
         <div class="mobile-menu hidden md:hidden bg-white py-4 px-6">
-            <a href="#home" class="block py-2 text-gray-700 hover:text-skyblue">Home</a>
-            <a href="#about" class="block py-2 text-gray-700 hover:text-skyblue">About</a>
-            <a href="#courses" class="block py-2 text-gray-700 hover:text-skyblue">Courses</a>
-            <a href="#testimonials" class="block py-2 text-gray-700 hover:text-skyblue">Testimonials</a>
-            <a href="#contact" class="block py-2 text-gray-700 hover:text-skyblue">Contact</a>
-            <a href="#apply" class="block mt-2 bg-darkblue text-white px-4 py-2 rounded-md text-center hover:bg-skyblue transition duration-300">Apply Now</a>
+            <a href="#home" class="block py-2 text-gray-700 hover:text-skyblue transition-colors duration-300">Home</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-skyblue transition-colors duration-300">About</a>
+            <a href="#courses" class="block py-2 text-gray-700 hover:text-skyblue transition-colors duration-300">Courses</a>
+            <a href="#testimonials" class="block py-2 text-gray-700 hover:text-skyblue transition-colors duration-300">Testimonials</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-skyblue transition-colors duration-300">Contact</a>
+            <a href="https://forms.gle/example" target="_blank" class="block mt-2 bg-darkblue text-white px-4 py-2 rounded-md text-center hover:bg-skyblue transition duration-300">Apply Now</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero-gradient pt-32 pb-20 px-4">
         <div class="container mx-auto flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInLeft">
                 <h1 class="text-4xl md:text-5xl font-bold text-darkblue mb-6">Empowering Minds, <span class="text-primary">Enriching Futures</span></h1>
                 <p class="text-lg text-gray-700 mb-8">Kobamelo College provides high-quality education and training programs that prepare students for success in their chosen careers.</p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#courses" class="bg-darkblue text-white px-6 py-3 rounded-md text-center hover:bg-skyblue transition duration-300">Explore Courses</a>
-                    <a href="#contact" class="bg-white text-darkblue px-6 py-3 rounded-md text-center border-2 border-darkblue hover:bg-lightblue transition duration-300">Contact Us</a>
+                    <a href="#courses" class="bg-darkblue text-white px-6 py-3 rounded-md text-center hover:bg-skyblue transition duration-300 animate__animated animate__fadeInUp animate__delay-1s">Explore Courses</a>
+                    <a href="#contact" class="bg-white text-darkblue px-6 py-3 rounded-md text-center border-2 border-darkblue hover:bg-lightblue transition duration-300 animate__animated animate__fadeInUp animate__delay-1s">Contact Us</a>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center">
+            <div class="md:w-1/2 flex justify-center animate__animated animate__fadeInRight">
                 <div class="relative w-full max-w-md">
-                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-skyblue rounded-full opacity-50"></div>
-                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-darkblue rounded-full opacity-50"></div>
-                    <div class="relative bg-white p-6 rounded-xl shadow-xl">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-skyblue rounded-full opacity-50 animate-pulse"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-darkblue rounded-full opacity-50 animate-pulse"></div>
+                    <div class="relative bg-white p-6 rounded-xl shadow-xl transform transition-all duration-300 hover:scale-105">
                         <h3 class="text-xl font-bold text-darkblue mb-4">Quick Facts</h3>
                         <div class="space-y-4">
                             <div class="flex items-start">
@@ -138,13 +217,13 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 animate__animated animate__fadeIn">
                 <h2 class="text-3xl font-bold text-darkblue mb-4">About Kobamelo College</h2>
                 <div class="w-20 h-1 bg-skyblue mx-auto"></div>
             </div>
             
             <div class="flex flex-col md:flex-row items-center mb-12">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8 animate__animated animate__fadeInLeft">
                     <h3 class="text-2xl font-bold text-darkblue mb-4">Our Mission</h3>
                     <p class="text-gray-700 mb-6">At Kobamelo College, we strive to create a supportive and stimulating learning environment that fosters academic excellence, creativity, and critical thinking.</p>
                     <ul class="space-y-3">
@@ -173,45 +252,115 @@
                             <span class="ml-2 text-gray-700">Empower students to become active citizens and leaders</span>
                         </li>
                     </ul>
+                    
+                    <button class="expand-button mt-6 flex items-center text-darkblue font-medium hover:text-skyblue transition-colors duration-300" data-target="history-content">
+                        <span>Our History</span>
+                        <svg class="expand-chevron w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div id="history-content" class="expanded-content mt-4 pl-2 border-l-2 border-skyblue">
+                        <p class="text-gray-700 mb-4">Founded in 2023, Kobamelo College began as a small training center with a vision to transform education in our community. Our founder, recognizing the need for quality vocational education, established the college with just two programs and a handful of students.</p>
+                        <p class="text-gray-700">Within our first year, we've grown to serve over 100 students across multiple programs, earning accreditation from respected organizations like QCTO and SAIOSH. Our rapid growth is a testament to the quality of our programs and the dedication of our staff.</p>
+                    </div>
                 </div>
-                <div class="md:w-1/2 bg-lightblue p-8 rounded-lg">
+                
+                <div class="md:w-1/2 bg-lightblue p-8 rounded-lg animate__animated animate__fadeInRight">
                     <h3 class="text-2xl font-bold text-darkblue mb-4">Our Values</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-4 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-darkblue mb-2">Excellence</h4>
-                            <p class="text-gray-700 text-sm">We strive for academic excellence and continuous improvement.</p>
+                        <div class="bg-white p-4 rounded-lg shadow-sm transform transition-all duration-300 hover:scale-105">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-skyblue text-white p-1 rounded-full mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-darkblue">Excellence</h4>
+                            </div>
+                            <p class="text-gray-700 text-sm">We strive for academic excellence and continuous improvement in all our programs and services.</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-darkblue mb-2">Integrity</h4>
-                            <p class="text-gray-700 text-sm">We operate with transparency, honesty, and ethics.</p>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm transform transition-all duration-300 hover:scale-105">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-skyblue text-white p-1 rounded-full mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-darkblue">Integrity</h4>
+                            </div>
+                            <p class="text-gray-700 text-sm">We operate with transparency, honesty, and ethics in all our interactions and operations.</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-darkblue mb-2">Diversity</h4>
-                            <p class="text-gray-700 text-sm">We celebrate diversity and promote inclusivity.</p>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm transform transition-all duration-300 hover:scale-105">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-skyblue text-white p-1 rounded-full mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-darkblue">Diversity</h4>
+                            </div>
+                            <p class="text-gray-700 text-sm">We celebrate diversity and promote inclusivity in our student body, staff, and curriculum.</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow-sm">
-                            <h4 class="font-bold text-darkblue mb-2">Innovation</h4>
-                            <p class="text-gray-700 text-sm">We encourage creativity and entrepreneurship.</p>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow-sm transform transition-all duration-300 hover:scale-105">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-skyblue text-white p-1 rounded-full mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-darkblue">Innovation</h4>
+                            </div>
+                            <p class="text-gray-700 text-sm">We encourage creativity, critical thinking, and entrepreneurship in our approach to education.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="expand-button mt-6 flex items-center text-darkblue font-medium hover:text-skyblue transition-colors duration-300" data-target="team-content">
+                        <span>Meet Our Team</span>
+                        <svg class="expand-chevron w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div id="team-content" class="expanded-content mt-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <div class="bg-skyblue text-white w-10 h-10 rounded-full flex items-center justify-center mb-2 mx-auto">
+                                    <span class="font-bold">JM</span>
+                                </div>
+                                <h4 class="text-center font-medium text-darkblue">John M.</h4>
+                                <p class="text-center text-xs text-gray-600">Founder & Director</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <div class="bg-skyblue text-white w-10 h-10 rounded-full flex items-center justify-center mb-2 mx-auto">
+                                    <span class="font-bold">SM</span>
+                                </div>
+                                <h4 class="text-center font-medium text-darkblue">Sarah K.</h4>
+                                <p class="text-center text-xs text-gray-600">Academic Head</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-darkblue text-white p-8 rounded-lg">
+            <div class="bg-darkblue text-white p-8 rounded-lg animate__animated animate__fadeInUp">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-2/3 mb-6 md:mb-0">
                         <h3 class="text-2xl font-bold mb-4">Accreditation & Recognition</h3>
                         <p class="mb-4">Kobamelo College is proud to be accredited by reputable organizations ensuring the highest standards of education.</p>
                         <div class="flex flex-wrap gap-4">
-                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium">QCTO</div>
-                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium">SAIOSH</div>
-                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium">CPD Group</div>
-                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium">Step Ahead CPD</div>
+                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium transform transition-all duration-300 hover:scale-105">QCTO</div>
+                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium transform transition-all duration-300 hover:scale-105">SAIOSH</div>
+                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium transform transition-all duration-300 hover:scale-105">CPD Group</div>
+                            <div class="bg-white text-darkblue px-3 py-1 rounded-md text-sm font-medium transform transition-all duration-300 hover:scale-105">Step Ahead CPD</div>
                         </div>
                     </div>
                     <div class="md:w-1/3 flex justify-center">
-                        <div class="bg-white text-darkblue p-4 rounded-lg text-center">
-                            <div class="text-3xl font-bold mb-2">20%</div>
+                        <div class="bg-white text-darkblue p-4 rounded-lg text-center transform transition-all duration-500 hover:rotate-3">
+                            <div class="text-3xl font-bold mb-2 gradient-text">20%</div>
                             <div class="text-sm">Growth in student enrollment from 2024 to 2025</div>
                         </div>
                     </div>
@@ -223,16 +372,16 @@
     <!-- Courses Section -->
     <section id="courses" class="py-16 bg-lightblue">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 animate__animated animate__fadeIn">
                 <h2 class="text-3xl font-bold text-darkblue mb-4">Our Courses & Programs</h2>
                 <p class="text-gray-700 max-w-2xl mx-auto">We offer a range of academic programs and courses designed to equip students with the knowledge and skills required to succeed.</p>
                 <div class="w-20 h-1 bg-skyblue mx-auto mt-4"></div>
             </div>
             
             <div class="mb-12">
-                <h3 class="text-2xl font-bold text-darkblue mb-6 text-center">Academic Programs</h3>
+                <h3 class="text-2xl font-bold text-darkblue mb-6 text-center animate__animated animate__fadeIn">Academic Programs</h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                         <div class="bg-darkblue text-white p-4">
                             <h4 class="font-bold text-lg">Early Childhood Development</h4>
                             <p class="text-sm opacity-80">NQF level 4</p>
@@ -241,13 +390,74 @@
                             <p class="text-gray-700 mb-4">Comprehensive training for practitioners in early childhood development.</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm text-gray-500">Duration: 1 year</span>
-                                <a href="#apply" class="text-skyblue font-medium text-sm hover:underline">Apply Now</a>
+                                <button class="text-skyblue font-medium text-sm hover:underline expand-button" data-target="ecd-content">More Info</button>
+                            </div>
+                            
+                            <div id="ecd-content" class="expanded-content mt-4">
+                                <div class="border-t pt-4">
+                                    <h5 class="font-bold text-darkblue mb-2">Course Details:</h5>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 mb-4">
+                                        <li>Comprehensive ECD practitioner training</li>
+                                        <li>Child development theories and practices</li>
+                                        <li>Classroom management techniques</li>
+                                        <li>Health and safety in ECD environments</li>
+                                    </ul>
+                                    
+                                    <h5 class="font-bold text-darkblue mb-2">Career Opportunities:</h5>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                        <li>ECD Practitioner</li>
+                                        <li>Daycare Center Manager</li>
+                                        <li>Preschool Teacher</li>
+                                        <li>Child Development Specialist</li>
+                                    </ul>
+                                    
+                                    <div class="mt-4">
+                                        <a href="https://forms.gle/example" target="_blank" class="inline-block bg-darkblue text-white px-4 py-2 rounded-md text-sm hover:bg-skyblue transition duration-300">Apply Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- More academic programs can be added here as the college expands -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                        <div class="bg-darkblue text-white p-4">
+                            <h4 class="font-bold text-lg">Occupational Health & Safety</h4>
+                            <p class="text-sm opacity-80">NQF level 4</p>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700 mb-4">Training for professionals in workplace health and safety management.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Duration: 6 months</span>
+                                <button class="text-skyblue font-medium text-sm hover:underline expand-button" data-target="ohs-content">More Info</button>
+                            </div>
+                            
+                            <div id="ohs-content" class="expanded-content mt-4">
+                                <div class="border-t pt-4">
+                                    <h5 class="font-bold text-darkblue mb-2">Course Details:</h5>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 mb-4">
+                                        <li>Occupational Health and Safety Act compliance</li>
+                                        <li>Risk assessment and management</li>
+                                        <li>Incident investigation procedures</li>
+                                        <li>Workplace hazard identification</li>
+                                    </ul>
+                                    
+                                    <h5 class="font-bold text-darkblue mb-2">Career Opportunities:</h5>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                        <li>Safety Officer</li>
+                                        <li>Health and Safety Manager</li>
+                                        <li>SHE Representative</li>
+                                        <li>Risk Assessor</li>
+                                    </ul>
+                                    
+                                    <div class="mt-4">
+                                        <a href="https://forms.gle/example" target="_blank" class="inline-block bg-darkblue text-white px-4 py-2 rounded-md text-sm hover:bg-skyblue transition duration-300">Apply Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                         <div class="bg-darkblue text-white p-4">
                             <h4 class="font-bold text-lg">Coming Soon</h4>
                             <p class="text-sm opacity-80">New Programs</p>
@@ -256,7 +466,26 @@
                             <p class="text-gray-700 mb-4">We are continuously expanding our academic offerings to meet industry demands.</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm text-gray-500">Duration: Varies</span>
-                                <a href="#contact" class="text-skyblue font-medium text-sm hover:underline">Enquire</a>
+                                <button class="text-skyblue font-medium text-sm hover:underline expand-button" data-target="coming-content">More Info</button>
+                            </div>
+                            
+                            <div id="coming-content" class="expanded-content mt-4">
+                                <div class="border-t pt-4">
+                                    <h5 class="font-bold text-darkblue mb-2">Planned Programs:</h5>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 mb-4">
+                                        <li>Business Management (NQF 5)</li>
+                                        <li>Human Resources Management</li>
+                                        <li>Project Management</li>
+                                        <li>Information Technology</li>
+                                    </ul>
+                                    
+                                    <h5 class="font-bold text-darkblue mb-2">Stay Updated:</h5>
+                                    <p class="text-sm text-gray-700 mb-4">Contact us to be notified when these programs become available.</p>
+                                    
+                                    <div class="mt-4">
+                                        <a href="#contact" class="inline-block bg-darkblue text-white px-4 py-2 rounded-md text-sm hover:bg-skyblue transition duration-300">Contact Us</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -264,51 +493,161 @@
             </div>
             
             <div>
-                <h3 class="text-2xl font-bold text-darkblue mb-6 text-center">Short Courses & Skills Programs</h3>
+                <h3 class="text-2xl font-bold text-darkblue mb-6 text-center animate__animated animate__fadeIn">Short Courses & Skills Programs</h3>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                         <div class="bg-skyblue text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
                         <h4 class="font-bold text-darkblue mb-2">Computer Literacy</h4>
-                        <p class="text-gray-700 text-sm">Essential computer skills for the modern workplace.</p>
+                        <p class="text-gray-700 text-sm mb-4">Essential computer skills for the modern workplace.</p>
+                        <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="computer-content">Details</button>
+                        
+                        <div id="computer-content" class="expanded-content mt-2">
+                            <div class="border-t pt-2">
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-gray-700 text-left">
+                                    <li>Basic computer operations</li>
+                                    <li>Microsoft Office Suite</li>
+                                    <li>Internet and email</li>
+                                    <li>Duration: 4 weeks</li>
+                                </ul>
+                                <a href="https://forms.gle/example" target="_blank" class="inline-block mt-2 bg-darkblue text-white px-3 py-1 rounded-md text-xs hover:bg-skyblue transition duration-300">Apply</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
                         <div class="bg-skyblue text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
                         <h4 class="font-bold text-darkblue mb-2">Safety Management</h4>
-                        <p class="text-gray-700 text-sm">Comprehensive workplace safety training.</p>
+                        <p class="text-gray-700 text-sm mb-4">Comprehensive workplace safety training.</p>
+                        <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="safety-content">Details</button>
+                        
+                        <div id="safety-content" class="expanded-content mt-2">
+                            <div class="border-t pt-2">
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-gray-700 text-left">
+                                    <li>OSH Act compliance</li>
+                                    <li>Risk assessment</li>
+                                    <li>Safety procedures</li>
+                                    <li>Duration: 6 weeks</li>
+                                </ul>
+                                <a href="https://forms.gle/example" target="_blank" class="inline-block mt-2 bg-darkblue text-white px-3 py-1 rounded-md text-xs hover:bg-skyblue transition duration-300">Apply</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                         <div class="bg-skyblue text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
                         <h4 class="font-bold text-darkblue mb-2">First Aid</h4>
-                        <p class="text-gray-700 text-sm">Essential first aid training for emergencies.</p>
+                        <p class="text-gray-700 text-sm mb-4">Essential first aid training for emergencies.</p>
+                        <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="firstaid-content">Details</button>
+                        
+                        <div id="firstaid-content" class="expanded-content mt-2">
+                            <div class="border-t pt-2">
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-gray-700 text-left">
+                                    <li>CPR certification</li>
+                                    <li>Emergency response</li>
+                                    <li>Wound care</li>
+                                    <li>Duration: 2 days</li>
+                                </ul>
+                                <a href="https://forms.gle/example" target="_blank" class="inline-block mt-2 bg-darkblue text-white px-3 py-1 rounded-md text-xs hover:bg-skyblue transition duration-300">Apply</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
                         <div class="bg-skyblue text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                             </svg>
                         </div>
                         <h4 class="font-bold text-darkblue mb-2">Environmental Health & Safety</h4>
-                        <p class="text-gray-700 text-sm">Managing health and safety in work environments.</p>
+                        <p class="text-gray-700 text-sm mb-4">Managing health and safety in work environments.</p>
+                        <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="ehs-content">Details</button>
+                        
+                        <div id="ehs-content" class="expanded-content mt-2">
+                            <div class="border-t pt-2">
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-gray-700 text-left">
+                                    <li>Environmental regulations</li>
+                                    <li>Waste management</li>
+                                    <li>Workplace hygiene</li>
+                                    <li>Duration: 4 weeks</li>
+                                </ul>
+                                <a href="https://forms.gle/example" target="_blank" class="inline-block mt-2 bg-darkblue text-white px-3 py-1 rounded-md text-xs hover:bg-skyblue transition duration-300">Apply</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="text-center mt-10">
-                    <a href="#contact" class="inline-block bg-darkblue text-white px-6 py-3 rounded-md hover:bg-skyblue transition duration-300">View All Courses</a>
+                <div class="text-center mt-10 animate__animated animate__fadeIn">
+                    <button class="expand-button inline-block bg-darkblue text-white px-6 py-3 rounded-md hover:bg-skyblue transition duration-300" data-target="all-courses-content">
+                        View All Courses
+                    </button>
+                    
+                    <div id="all-courses-content" class="expanded-content mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-bold text-darkblue mb-4">Complete Course Catalog</h4>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-bold text-darkblue mb-2">Academic Programs</h5>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Early Childhood Development (NQF 4)</span>
+                                        <span class="text-sm text-gray-600">1 Year</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Occupational Health & Safety (NQF 4)</span>
+                                        <span class="text-sm text-gray-600">6 Months</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-darkblue mb-2">Short Courses</h5>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Computer Literacy</span>
+                                        <span class="text-sm text-gray-600">4 Weeks</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Safety Management</span>
+                                        <span class="text-sm text-gray-600">6 Weeks</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>First Aid</span>
+                                        <span class="text-sm text-gray-600">2 Days</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Environmental Health & Safety</span>
+                                        <span class="text-sm text-gray-600">4 Weeks</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>H.I.R.A</span>
+                                        <span class="text-sm text-gray-600">1 Week</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>SHE Rep</span>
+                                        <span class="text-sm text-gray-600">1 Week</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>Basic Fire fighter</span>
+                                        <span class="text-sm text-gray-600">3 Days</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2">
+                                        <span>HIV and Aids counselling</span>
+                                        <span class="text-sm text-gray-600">2 Weeks</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -317,14 +656,14 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 animate__animated animate__fadeIn">
                 <h2 class="text-3xl font-bold text-darkblue mb-4">Student Success Stories</h2>
                 <p class="text-gray-700 max-w-2xl mx-auto">Hear from our graduates about how Kobamelo College helped them achieve their career goals.</p>
                 <div class="w-20 h-1 bg-skyblue mx-auto mt-4"></div>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-lightblue p-6 rounded-lg card-hover">
+                <div class="bg-lightblue p-6 rounded-lg card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                     <div class="flex items-center mb-4">
                         <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
                             <span class="font-bold">RM</span>
@@ -334,10 +673,17 @@
                             <p class="text-sm text-gray-600">Safety Officer</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">"Sir, I got a job as a Safety Officer, thank you for the opportunity. Kobamelo College truly empowered me with the skills and knowledge I needed to succeed."</p>
+                    <p class="text-gray-700 italic mb-4">"Sir, I got a job as a Safety Officer, thank you for the opportunity. Kobamelo College truly empowered me with the skills and knowledge I needed to succeed."</p>
+                    <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="testimonial1-content">Read Full Story</button>
+                    
+                    <div id="testimonial1-content" class="expanded-content mt-2">
+                        <div class="border-t pt-2">
+                            <p class="text-sm text-gray-700">"Before joining Kobamelo College, I was struggling to find stable employment. The Safety Management course gave me practical skills that employers were looking for. Within a month of completing my training, I secured a position as a Safety Officer at a local manufacturing plant. The hands-on approach and industry-relevant curriculum made all the difference in my job search."</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="bg-lightblue p-6 rounded-lg card-hover">
+                <div class="bg-lightblue p-6 rounded-lg card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
                     <div class="flex items-center mb-4">
                         <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
                             <span class="font-bold">GM</span>
@@ -347,10 +693,17 @@
                             <p class="text-sm text-gray-600">Promoted Employee</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">"I got a job promotion at work, sir, thank you very much. The education and training I received at Kobamelo College were instrumental in my career advancement."</p>
+                    <p class="text-gray-700 italic mb-4">"I got a job promotion at work, sir, thank you very much. The education and training I received at Kobamelo College were instrumental in my career advancement."</p>
+                    <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="testimonial2-content">Read Full Story</button>
+                    
+                    <div id="testimonial2-content" class="expanded-content mt-2">
+                        <div class="border-t pt-2">
+                            <p class="text-sm text-gray-700">"After completing the Computer Literacy and Business Communication courses at Kobamelo College, I was able to take on more responsibilities at my workplace. My improved skills didn't go unnoticed - within three months, I was promoted to a supervisory position with a significant pay increase. The flexible scheduling allowed me to study while working full-time, making it possible to upgrade my skills without sacrificing my income."</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="bg-lightblue p-6 rounded-lg card-hover">
+                <div class="bg-lightblue p-6 rounded-lg card-hover animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                     <div class="flex items-center mb-4">
                         <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
                             <span class="font-bold">KV</span>
@@ -360,7 +713,61 @@
                             <p class="text-sm text-gray-600">Counsellor</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">"I got a job as a Counsellor at a local clinic, thank you very much. Kobamelo College provided me with the foundation I needed to pursue my passion and make a difference in my community."</p>
+                    <p class="text-gray-700 italic mb-4">"I got a job as a Counsellor at a local clinic, thank you very much. Kobamelo College provided me with the foundation I needed to pursue my passion and make a difference in my community."</p>
+                    <button class="text-skyblue text-xs font-medium hover:underline expand-button" data-target="testimonial3-content">Read Full Story</button>
+                    
+                    <div id="testimonial3-content" class="expanded-content mt-2">
+                        <div class="border-t pt-2">
+                            <p class="text-sm text-gray-700">"The HIV and AIDS Counseling course at Kobamelo College changed my life. The trainers were knowledgeable and compassionate, creating a learning environment that encouraged open discussion and practical skill development. I now work at a community health center where I help individuals and families affected by HIV/AIDS. The college's emphasis on practical, community-focused training prepared me perfectly for this rewarding career."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10 animate__animated animate__fadeIn">
+                <button class="expand-button inline-block bg-darkblue text-white px-6 py-3 rounded-md hover:bg-skyblue transition duration-300" data-target="more-testimonials">
+                    View More Success Stories
+                </button>
+                
+                <div id="more-testimonials" class="expanded-content mt-6 grid md:grid-cols-3 gap-8">
+                    <div class="bg-lightblue p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
+                                <span class="font-bold">TB</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-darkblue">Thabo B.</h4>
+                                <p class="text-sm text-gray-600">Fire Safety Officer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"The Basic Fire Fighter course gave me specialized skills that set me apart in the job market. I'm now working at a large industrial facility with excellent benefits."</p>
+                    </div>
+                    
+                    <div class="bg-lightblue p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
+                                <span class="font-bold">NM</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-darkblue">Nomsa M.</h4>
+                                <p class="text-sm text-gray-600">ECD Practitioner</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"The ECD program was comprehensive and practical. I started my own daycare center just six months after completing the course, and now employ two other graduates."</p>
+                    </div>
+                    
+                    <div class="bg-lightblue p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-darkblue text-white w-10 h-10 rounded-full flex items-center justify-center">
+                                <span class="font-bold">LP</span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-darkblue">Lerato P.</h4>
+                                <p class="text-sm text-gray-600">Office Administrator</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"The Computer Literacy course transformed my career prospects. From barely being able to use email, I'm now proficient in all Office applications and managing our company's database."</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -369,7 +776,7 @@
     <!-- Apply Section -->
     <section id="apply" class="py-16 bg-gradient-to-r from-darkblue to-skyblue">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden animate__animated animate__zoomIn">
                 <div class="md:flex">
                     <div class="md:w-1/2 bg-darkblue text-white p-8 flex flex-col justify-center">
                         <h2 class="text-2xl font-bold mb-4">Ready to Start Your Journey?</h2>
@@ -394,9 +801,35 @@
                                 <span class="ml-2">Pay the application fee</span>
                             </div>
                         </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-2">Application Deadlines</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex justify-between">
+                                    <span>Early Childhood Development</span>
+                                    <span>30 November 2024</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Safety Programs</span>
+                                    <span>Rolling Admission</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Short Courses</span>
+                                    <span>Monthly Intakes</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <h3 class="text-xl font-bold text-darkblue mb-6">Application Form</h3>
+                        <h3 class="text-xl font-bold text-darkblue mb-6">Start Your Application</h3>
+                        <p class="text-gray-700 mb-6">Complete this form to begin your application process, or click the button below to access our full online application portal.</p>
+                        
+                        <div class="text-center mb-6">
+                            <a href="https://forms.gle/example" target="_blank" class="inline-block bg-darkblue text-white px-6 py-3 rounded-md hover:bg-skyblue transition duration-300 pulse-animation">
+                                Apply Online Now
+                            </a>
+                        </div>
+                        
                         <form>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Full Name</label>
@@ -425,7 +858,7 @@
                                     <option>HIV and Aids counselling</option>
                                 </select>
                             </div>
-                            <button class="w-full bg-darkblue text-white py-2 px-4 rounded-md hover:bg-skyblue transition duration-300" type="submit">Submit Application</button>
+                            <button class="w-full bg-darkblue text-white py-2 px-4 rounded-md hover:bg-skyblue transition duration-300" type="submit">Request Information</button>
                         </form>
                     </div>
                 </div>
@@ -436,14 +869,14 @@
     <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 animate__animated animate__fadeIn">
                 <h2 class="text-3xl font-bold text-darkblue mb-4">Contact Us</h2>
                 <p class="text-gray-700 max-w-2xl mx-auto">Get in touch with us at Kobamelo College. We're here to help with any questions or queries you may have.</p>
                 <div class="w-20 h-1 bg-skyblue mx-auto mt-4"></div>
             </div>
             
             <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2">
+                <div class="md:w-1/2 animate__animated animate__fadeInLeft">
                     <div class="bg-lightblue p-8 rounded-lg h-full">
                         <h3 class="text-xl font-bold text-darkblue mb-6">Contact Information</h3>
                         <div class="space-y-6">
@@ -502,10 +935,28 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-darkblue mb-4">Operating Hours</h4>
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="flex justify-between py-2 border-b">
+                                    <span>Monday - Thursday</span>
+                                    <span class="font-medium">8:00 AM - 5:00 PM</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b">
+                                    <span>Friday</span>
+                                    <span class="font-medium">8:00 AM - 4:00 PM</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span>Saturday</span>
+                                    <span class="font-medium">9:00 AM - 1:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="md:w-1/2">
+                <div class="md:w-1/2 animate__animated animate__fadeInRight">
                     <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-8 h-full">
                         <h3 class="text-xl font-bold text-darkblue mb-6">Send Us a Message</h3>
                         <form>
@@ -519,7 +970,13 @@
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="contact-subject">Subject</label>
-                                <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-skyblue" id="contact-subject" type="text" placeholder="Subject">
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-skyblue" id="contact-subject">
+                                    <option>General Inquiry</option>
+                                    <option>Course Information</option>
+                                    <option>Admissions</option>
+                                    <option>Feedback</option>
+                                    <option>Other</option>
+                                </select>
                             </div>
                             <div class="mb-6">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="contact-message">Message</label>
@@ -527,6 +984,47 @@
                             </div>
                             <button class="w-full bg-darkblue text-white py-2 px-4 rounded-md hover:bg-skyblue transition duration-300" type="submit">Send Message</button>
                         </form>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-darkblue mb-4">Frequently Asked Questions</h4>
+                            <div class="space-y-4">
+                                <div class="border-b pb-2">
+                                    <button class="expand-button w-full flex justify-between items-center text-left font-medium text-darkblue" data-target="faq1">
+                                        <span>What are the entry requirements for your courses?</span>
+                                        <svg class="expand-chevron w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="faq1" class="expanded-content mt-2">
+                                        <p class="text-sm text-gray-700">Requirements vary by program. Most short courses require a Grade 10 certificate, while our NQF programs typically require Grade 12. Please contact us for specific program requirements.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-b pb-2">
+                                    <button class="expand-button w-full flex justify-between items-center text-left font-medium text-darkblue" data-target="faq2">
+                                        <span>Do you offer financial aid or payment plans?</span>
+                                        <svg class="expand-chevron w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="faq2" class="expanded-content mt-2">
+                                        <p class="text-sm text-gray-700">Yes, we offer flexible payment plans for all our programs. Some courses may also qualify for SETA funding or other financial assistance programs.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-b pb-2">
+                                    <button class="expand-button w-full flex justify-between items-center text-left font-medium text-darkblue" data-target="faq3">
+                                        <span>Are your courses accredited?</span>
+                                        <svg class="expand-chevron w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="faq3" class="expanded-content mt-2">
+                                        <p class="text-sm text-gray-700">Yes, our programs are accredited by QCTO, SAIOSH, and other relevant bodies. Each course page lists its specific accreditations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -534,9 +1032,9 @@
     </section>
 
     <!-- Map Section -->
-    <div class="bg-gray-100">
+    <div class="bg-gray-100 animate__animated animate__fadeIn">
         <div class="container mx-auto px-4 py-8">
-            <div class="rounded-lg overflow-hidden shadow-md">
+            <div class="rounded-lg overflow-hidden shadow-md transform transition-all duration-300 hover:shadow-lg">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.789012345678!2d25.987654!3d-27.987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDU5JzE1LjYiUyAyNcKwNTknMTUuNiJF!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -599,6 +1097,13 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-darkblue text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-skyblue">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <script>
         // Mobile menu toggle
         $(document).ready(function() {
@@ -607,16 +1112,71 @@
             });
             
             // Smooth scrolling for anchor links
-            $('a[href*="#"]').on('click', function(e) {
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 800, 'swing', function() {
+                            window.location.hash = target.selector;
+                        });
+                    }
+                }
+            });
+            
+            // Expandable content functionality
+            $('.expand-button').click(function(e) {
                 e.preventDefault();
+                var target = $(this).data('target');
+                $('#' + target).toggleClass('active');
+                $(this).find('.expand-chevron').toggleClass('rotated');
+                $(this).toggleClass('text-skyblue text-darkblue');
                 
-                $('html, body').animate(
-                    {
-                        scrollTop: $($(this).attr('href')).offset().top - 80,
-                    },
-                    500,
-                    'linear'
-                );
+                // Scroll to expanded content if it's not fully visible
+                if ($('#' + target).hasClass('active')) {
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top - 100
+                    }, 300);
+                }
+            });
+            
+            // Back to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('#back-to-top').removeClass('opacity-0 invisible').addClass('opacity-100 visible');
+                } else {
+                    $('#back-to-top').removeClass('opacity-100 visible').addClass('opacity-0 invisible');
+                }
+            });
+            
+            $('#back-to-top').click(function() {
+                $('html, body').animate({scrollTop: 0}, 'smooth');
+                return false;
+            });
+            
+            // Animation on scroll
+            function animateOnScroll() {
+                $('.animate__animated').each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    
+                    if (scroll + windowHeight > position + 100) {
+                        var animationClass = $(this).attr('class').split('animate__animated ')[1].split(' ')[0];
+                        $(this).addClass('animate__' + animationClass);
+                    }
+                });
+            }
+            
+            // Run once on page load
+            animateOnScroll();
+            
+            // Then on scroll
+            $(window).scroll(function() {
+                animateOnScroll();
             });
         });
     </script>
